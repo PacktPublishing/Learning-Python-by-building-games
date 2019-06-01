@@ -6,5 +6,5 @@ def boardCopy(board):
     cloneBoard = []
     for pos in board:
         cloneBoard.append(pos)
-    
+
     return cloneBoard
