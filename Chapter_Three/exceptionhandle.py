@@ -6,10 +6,10 @@ while True:
     print('|' + choices[3] + '|' + choices[4] + '|' + choices[5] + '|')
     print('----------')
     print('|' + choices[6] + '|' + choices[7] + '|' + choices[8] + '|')
-    #above code is to print board layouts
+    # above code is to print board layouts
 
     try:
         choice = int(input("> ").strip())
-    except:
+    except ValueError:
         print("Please enter only valid fields from board (0-8)")
         continue
