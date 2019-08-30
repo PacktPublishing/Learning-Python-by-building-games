@@ -1,4 +1,3 @@
-
 import curses
 from curses import KEY_RIGHT, KEY_LEFT, KEY_DOWN, KEY_UP
 from random import randint
@@ -12,10 +11,13 @@ SNAKE_X = SNAKE_LENGTH + 1
 SNAKE_Y = 3
 TIMEOUT = 100
 
+
 class Snake(object):
     REV_DIR_MAP = {
-        KEY_UP: KEY_DOWN, KEY_DOWN: KEY_UP,
-        KEY_LEFT: KEY_RIGHT, KEY_RIGHT: KEY_LEFT,
+        KEY_UP: KEY_DOWN,
+        KEY_DOWN: KEY_UP,
+        KEY_LEFT: KEY_RIGHT,
+        KEY_RIGHT: KEY_LEFT,
     }
 
     def __init__(self, x, y, window):
@@ -55,8 +57,8 @@ class Snake(object):
 
     @property
     def collided(self):
-        return any([body.coor == self.head.coor
-                    for body in self.body_list[:-1]])
+        return any(
+            [body.coor == self.head.coor for body in self.body_list[:-1]])
 
     def update(self):
         last_body = self.body_list.pop(0)
@@ -102,6 +104,7 @@ class Snake(object):
         if self.head.x > MAX_X:
             self.head.x = 1
 
+
 class Body(object):
     def __init__(self, x, y, char='#'):
         self.x = x
@@ -111,6 +114,7 @@ class Body(object):
     @property
     def coor(self):
         return self.x, self.y
+
 
 class Food(object):
     def __init__(self, window, char='&'):
@@ -167,6 +171,5 @@ if __name__ == '__main__':
         snake.update()
         if snake.collided:
             break
-
 
 curses.endwin()

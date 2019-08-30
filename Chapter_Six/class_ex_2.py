@@ -1,8 +1,10 @@
 class Bike:
     name = ''
-    color= ' '
+    color = ''
     price = 0
-    
+
     def info(self, name, color, price):
-        self.name, self.color, self.price = name,color,price
-        print("{}: {} and {}".format(self.name,self.color,self.price))
+        self.name = name
+        self.color = color
+        self.price = price
+        print("{}: {} and {}".format(self.name, self.color, self.price))

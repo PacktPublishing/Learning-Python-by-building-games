@@ -8,5 +8,7 @@ class Bike:
     def Brake(self):
         print("Breaking......")
 
+
 suzuki = Bike()
 suzuki.ride_Left()
+suzuki.Brake()
