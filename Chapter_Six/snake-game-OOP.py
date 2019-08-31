@@ -28,7 +28,7 @@ class Snake(object):
         for i in range(SNAKE_LENGTH, 0, -1):
             self.body_list.append(Body(x - i, y))
 
-        self.body_list.append(Body(x, y, '#'))
+        self.body_list.append(Body(x, y, 'O'))
         self.window = window
         self.direction = KEY_RIGHT
         self.last_head_coor = (x, y)

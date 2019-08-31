@@ -5,4 +5,4 @@ class Bike:
         self.price = price
 
     def info(self):
-        print("{}: {} and {}".format(self.name, self.color, self.price))
+        print("{0}: {1} and {2}".format(self.name, self.color, self.price))

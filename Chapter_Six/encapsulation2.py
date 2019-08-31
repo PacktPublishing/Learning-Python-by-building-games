@@ -7,4 +7,4 @@ class Bike:
         self.__color = color
 
     def info(self):
-        print("{} is of {} color".format(self.__name, self.__color))
+        print("{0} is of {1} color".format(self.__name, self.__color))
