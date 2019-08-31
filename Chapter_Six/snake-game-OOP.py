@@ -41,7 +41,7 @@ class Snake(object):
 
     @property
     def score(self):
-        return 'Score : {}'.format(self.hit_score)
+        return 'Score : {0}'.format(self.hit_score)
 
     def add_body(self, body_list):
         self.body_list.extend(body_list)
