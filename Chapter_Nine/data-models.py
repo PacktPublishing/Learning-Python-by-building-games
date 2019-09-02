@@ -4,4 +4,3 @@ class Base:
 
     def add(self, other):
         print(self.first + other)
-        
