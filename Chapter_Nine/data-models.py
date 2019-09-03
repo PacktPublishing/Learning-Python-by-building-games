@@ -3,4 +3,4 @@ class Base:
         self.first = first
 
     def add(self, other):
-        print(self.first + other)
+        print(self.first + other.first)
