@@ -13,12 +13,14 @@ from random import *
 from turtle import *
 from base import vector
 
-ant = vector(0, 0)
-aim = vector(2, 0)
+ant = vector(0, 0)  # ant is character
+aim = vector(2, 0)  # aim is next position
+
 
 def wrap(value):
     "Wrap value around -200 and 200."
     return value  # TODO
+
 
 def draw():
     "Move ant and draw screen."
@@ -35,6 +37,7 @@ def draw():
 
     if running:
         ontimer(draw, 100)
+
 
 setup(420, 420, 370, 0)
 hideturtle()

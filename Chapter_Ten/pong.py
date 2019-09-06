@@ -16,17 +16,21 @@ from random import choice, random
 from turtle import *
 from base import vector
 
+
 def value():
     "Randomly generate value between (-5, -3) or (3, 5)."
     return (3 + random() * 2) * choice([1, -1])
+
 
 ball = vector(0, 0)
 aim = vector(value(), value())
 state = {1: 0, 2: 0}
 
+
 def move(player, change):
     "Move player position by change."
     state[player] += change
+
 
 def rectangle(x, y, width, height):
     "Draw rectangle at (x, y) with given width and height."
@@ -40,6 +44,7 @@ def rectangle(x, y, width, height):
         forward(height)
         left(90)
     end_fill()
+
 
 def draw():
     "Draw game and move pong ball."
@@ -56,28 +61,35 @@ def draw():
     dot(10)
     update()
 
+    # when ball hits upper or lower boundary
+    # Total height is 420 (-200 down and 200 up)
     if y < -200 or y > 200:
         aim.y = -aim.y
 
+    # when ball is near left boundary
     if x < -185:
         low = state[1]
         high = state[1] + 50
 
+        # when player1 hits ball
         if low <= y <= high:
             aim.x = -aim.x
         else:
             return
 
+    # when ball is near right boundary
     if x > 185:
         low = state[2]
         high = state[2] + 50
 
+        # when player2 hits ball
         if low <= y <= high:
             aim.x = -aim.x
-        else:   
+        else:
             return
 
     ontimer(draw, 50)
+
 
 setup(420, 420, 370, 0)
 hideturtle()

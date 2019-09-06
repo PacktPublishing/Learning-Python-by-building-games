@@ -16,14 +16,17 @@ from base import vector
 bird = vector(0, 0)
 balls = []
 
+
 def tap(x, y):
     "Move bird up in response to screen tap."
     up = vector(0, 30)
     bird.move(up)
 
+
 def inside(point):
     "Return True if point on screen."
     return -200 < point.x < 200 and -200 < point.y < 200
+
 
 def draw(alive):
     "Draw screen objects."
@@ -42,6 +45,7 @@ def draw(alive):
 
     update()
 
+
 def move():
     "Update object positions."
     bird.y -= 5
@@ -52,7 +56,7 @@ def move():
     if randrange(10) == 0:
         y = randrange(-199, 199)
         ball = vector(199, y)
-        balls.append(ball)
+        balls.append(ball)  # append each obstacles to list
 
     while len(balls) > 0 and not inside(balls[0]):
         balls.pop(0)
@@ -63,12 +67,13 @@ def move():
 
     for ball in balls:
         if abs(ball - bird) < 15:
-            print(abs(ball - bird))
+            print(abs(ball - bird))  # collision value comes around 13.4536240
             draw(False)
             return
 
     draw(True)
-    ontimer(move, 50)
+    ontimer(move, 50)  # calls move function at every 50ms
+
 
 setup(420, 420, 370, 0)
 hideturtle()
