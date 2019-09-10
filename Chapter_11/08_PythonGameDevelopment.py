@@ -2,11 +2,11 @@ import pygame
 
 pygame.init()
 
-white = (255,255,255)
-black = (0,0,0)
-red = (255,0,0)
+white = (255, 255, 255)
+black = (0, 0, 0)
+red = (255, 0, 0)
 
-gameDisplay = pygame.display.set_mode((800,600))
+gameDisplay = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('')
 
 gameExit = False
@@ -27,14 +27,8 @@ while not gameExit:
 
     lead_x += lead_x_change
     gameDisplay.fill(white)
-    pygame.draw.rect(gameDisplay, black, [lead_x,lead_y,10,10])
+    pygame.draw.rect(gameDisplay, black, [lead_x, lead_y, 10, 10])
     pygame.display.update()
-    
 
 pygame.quit()
 quit()
-
-
-
-
-
