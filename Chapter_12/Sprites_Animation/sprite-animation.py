@@ -4,13 +4,28 @@ pygame.init()
 
 win = pygame.display.set_mode((500, 480))
 
-
-walkRight = [pygame.image.load('Right1.png'), pygame.image.load('Right2.png'), pygame.image.load('Right3.png'),
-             pygame.image.load('Right4.png'), pygame.image.load('Right5.png'), pygame.image.load('Right6.png'),
-             pygame.image.load('Right7.png'), pygame.image.load('Right8.png'), pygame.image.load('Right9.png')]
-walkLeft = [pygame.image.load('Left1.png'), pygame.image.load('Left2.png'), pygame.image.load('Left3.png'),
-            pygame.image.load('Left4.png'), pygame.image.load('Left5.png'), pygame.image.load('Left6.png'),
-            pygame.image.load('Left7.png'), pygame.image.load('Left8.png'), pygame.image.load('Left9.png')]
+walkRight = [
+    pygame.image.load('Right1.png'),
+    pygame.image.load('Right2.png'),
+    pygame.image.load('Right3.png'),
+    pygame.image.load('Right4.png'),
+    pygame.image.load('Right5.png'),
+    pygame.image.load('Right6.png'),
+    pygame.image.load('Right7.png'),
+    pygame.image.load('Right8.png'),
+    pygame.image.load('Right9.png')
+]
+walkLeft = [
+    pygame.image.load('Left1.png'),
+    pygame.image.load('Left2.png'),
+    pygame.image.load('Left3.png'),
+    pygame.image.load('Left4.png'),
+    pygame.image.load('Left5.png'),
+    pygame.image.load('Left6.png'),
+    pygame.image.load('Left7.png'),
+    pygame.image.load('Left8.png'),
+    pygame.image.load('Left9.png')
+]
 bg = pygame.image.load('bg.jpg')
 char = pygame.image.load('standing.png')
 
@@ -21,7 +36,6 @@ height = 60
 vel = 5
 
 clock = pygame.time.Clock()
-
 
 left = False
 right = False
@@ -73,8 +87,6 @@ while run:
         left = False
         right = False
         walkCount = 0
-
-   
 
     Animation_Logic()
 
