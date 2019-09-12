@@ -1,6 +1,6 @@
-# Chapter Five
+# Chapter Eleven
 
-This chapter is about Pygame module.
+This chapter is about Pygame module
 
 * **SKILL 1:** Readers will learn about how to make use of sprites to build 2D games
 * **SKILL 2:** Readers will learn to handle user key events with PyGame

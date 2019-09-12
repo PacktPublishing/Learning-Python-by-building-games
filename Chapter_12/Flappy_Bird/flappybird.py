@@ -6,10 +6,9 @@ from collections import deque
 import pygame
 from pygame.locals import *
 
-
 FPS = 60
 ANIMATION_SPEED = 0.18  # pixels per millisecond
-WIN_WIDTH = 284 * 2     # BG image size: 284x512 px; tiled twice
+WIN_WIDTH = 284 * 2  # BG image size: 284x512 px; tiled twice
 WIN_HEIGHT = 512
 
 
@@ -82,7 +81,7 @@ class Bird(pygame.sprite.Sprite):
             last called.
         """
         if self.msec_to_climb > 0:
-            frac_climb_done = 1 - self.msec_to_climb/Bird.CLIMB_DURATION
+            frac_climb_done = 1 - self.msec_to_climb / Bird.CLIMB_DURATION
             self.y -= (Bird.CLIMB_SPEED * frames_to_msec(delta_frames) *
                        (1 - math.cos(frac_climb_done * math.pi)))
             self.msec_to_climb -= frames_to_msec(delta_frames)
@@ -168,20 +167,21 @@ class PipePair(pygame.sprite.Sprite):
         self.score_counted = False
 
         self.image = pygame.Surface((PipePair.WIDTH, WIN_HEIGHT), SRCALPHA)
-        self.image.convert()   # speeds up blitting
+        self.image.convert()  # speeds up blitting
         self.image.fill((0, 0, 0, 0))
         total_pipe_body_pieces = int(
-            (WIN_HEIGHT -                  # fill window from top to bottom
-             3 * Bird.HEIGHT -             # make room for bird to fit through
-             3 * PipePair.PIECE_HEIGHT) /  # 2 end pieces + 1 body piece
-            PipePair.PIECE_HEIGHT          # to get number of pipe pieces
+            (
+                WIN_HEIGHT -  # fill window from top to bottom
+                3 * Bird.HEIGHT -  # make room for bird to fit through
+                3 * PipePair.PIECE_HEIGHT) /  # 2 end pieces + 1 body piece
+            PipePair.PIECE_HEIGHT  # to get number of pipe pieces
         )
         self.bottom_pieces = randint(1, total_pipe_body_pieces)
         self.top_pieces = total_pipe_body_pieces - self.bottom_pieces
 
         # bottom pipe
         for i in range(1, self.bottom_pieces + 1):
-            piece_pos = (0, WIN_HEIGHT - i*PipePair.PIECE_HEIGHT)
+            piece_pos = (0, WIN_HEIGHT - i * PipePair.PIECE_HEIGHT)
             self.image.blit(pipe_body_img, piece_pos)
         bottom_pipe_end_y = WIN_HEIGHT - self.bottom_height_px
         bottom_end_piece_pos = (0, bottom_pipe_end_y - PipePair.PIECE_HEIGHT)
@@ -253,7 +253,6 @@ def load_images():
     pipe-body: An image of a slice of a pipe's body.  Use this and
         pipe-body to make pipes.
     """
-
     def load_image(img_file_name):
         """Return the loaded pygame image with the specified file name.
 
@@ -270,13 +269,15 @@ def load_images():
         img.convert()
         return img
 
-    return {'background': load_image('background.png'),
-            'pipe-end': load_image('pipe_end.png'),
-            'pipe-body': load_image('pipe_body.png'),
-            # images for animating the flapping bird -- animated GIFs are
-            # not supported in pygame
-            'bird-wingup': load_image('bird_wing_up.png'),
-            'bird-wingdown': load_image('bird_wing_down.png')}
+    return {
+        'background': load_image('background.png'),
+        'pipe-end': load_image('pipe_end.png'),
+        'pipe-body': load_image('pipe_body.png'),
+        # images for animating the flapping bird -- animated GIFs are
+        # not supported in pygame
+        'bird-wingup': load_image('bird_wing_up.png'),
+        'bird-wingdown': load_image('bird_wing_down.png')
+    }
 
 
 def frames_to_msec(frames, fps=FPS):
@@ -317,7 +318,7 @@ def main():
 
     # the bird stays in the same x position, so bird.x is a constant
     # center bird on screen
-    bird = Bird(50, int(WIN_HEIGHT/2 - Bird.HEIGHT/2), 2,
+    bird = Bird(50, int(WIN_HEIGHT / 2 - Bird.HEIGHT / 2), 2,
                 (images['bird-wingup'], images['bird-wingdown']))
 
     pipes = deque()
@@ -340,8 +341,8 @@ def main():
                 break
             elif e.type == KEYUP and e.key in (K_PAUSE, K_p):
                 paused = not paused
-            elif e.type == MOUSEBUTTONUP or (e.type == KEYUP and
-                    e.key in (K_UP, K_RETURN, K_SPACE)):
+            elif e.type == MOUSEBUTTONUP or (
+                    e.type == KEYUP and e.key in (K_UP, K_RETURN, K_SPACE)):
                 bird.msec_to_climb = Bird.CLIMB_DURATION
 
         if paused:
@@ -372,7 +373,7 @@ def main():
                 p.score_counted = True
 
         score_surface = score_font.render(str(score), True, (255, 255, 255))
-        score_x = WIN_WIDTH/2 - score_surface.get_width()/2
+        score_x = WIN_WIDTH / 2 - score_surface.get_width() / 2
         display_surface.blit(score_surface, (score_x, PipePair.PIECE_HEIGHT))
 
         pygame.display.flip()
