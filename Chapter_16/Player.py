@@ -55,4 +55,3 @@ class Player:
     def draw(self, surface, image):
         for i in range(0, self.length):
             surface.blit(image, (self.x[i], self.y[i]))
-

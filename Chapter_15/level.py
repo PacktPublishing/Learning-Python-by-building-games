@@ -11,7 +11,6 @@ class Level():
         self.number = 0
         self.total_number_of_birds = 4
 
-
     def build_0(self):
 
         pig_no_1 = RoundPig(980, 100, self.space)
@@ -32,7 +31,6 @@ class Level():
         self.beams.append(Polygon(p, 85, 20, self.space))
         self.number_of_birds = 4
 
-
     def build_1(self):
         """level 1"""
         pig = RoundPig(1000, 100, self.space)
@@ -49,12 +47,11 @@ class Level():
         self.beams.append(Polygon(p, 85, 20, self.space))
         self.total_number_of_birds = 4
 
-
     def load_level(self):
         try:
-            build_name = "build_"+str(self.number)
+            build_name = "build_" + str(self.number)
             getattr(self, build_name)()
         except AttributeError:
             self.number = 0
-            build_name = "build_"+str(self.number)
+            build_name = "build_" + str(self.number)
             getattr(self, build_name)()

@@ -4,6 +4,7 @@ import pygame
 import time
 from operator import *
 
+
 class Player:
     x = [0]
     y = [0]
@@ -59,9 +60,8 @@ class Player:
         self.direction = 3
 
     def draw(self, surface, image):
-        for i in range(0, self.length):
-            surface.blit(image, (self.x[i], self.y[i]))
-
+        for item in range(0, self.length):
+            surface.blit(image, (self.x[item], self.y[item]))
 
 
 class Computer:
@@ -119,29 +119,29 @@ class Computer:
         self.direction = 3
 
     def target(self, dx, dy):
-        if gt(self.x[0] ,  dx):
+        if gt(self.x[0], dx):
 
             self.moveLeft()
 
-        if lt(self.x[0] , dx):
+        if lt(self.x[0], dx):
             self.moveRight()
 
         if self.x[0] == dx:
-            if lt(self.y[0] , dy):
+            if lt(self.y[0], dy):
                 self.moveDown()
 
-            if gt(self.y[0] , dy):
+            if gt(self.y[0], dy):
                 self.moveUp()
 
     def draw(self, surface, image):
-        for i in range(0, self.length):
-            surface.blit(image, (self.x[i], self.y[i]))
+        for item in range(0, self.length):
+            surface.blit(image, (self.x[item], self.y[item]))
 
 
 class Game:
     def checkCollision(self, x1, y1, x2, y2, blockSize):
-        if ge(x1 , x2) and le(x1 , x2 + blockSize):
-            if ge(y1 , y2) and le(y1, y2 + blockSize):
+        if ge(x1, x2) and le(x1, x2 + blockSize):
+            if ge(y1, y2) and le(y1, y2 + blockSize):
                 return True
         return False
 
@@ -177,7 +177,8 @@ class App:
 
     def loader(self):
         pygame.init()
-        self.surface = pygame.display.set_mode((self.Width, self.Height), pygame.HWSURFACE)
+        self.surface = pygame.display.set_mode((self.Width, self.Height),
+                                               pygame.HWSURFACE)
 
         self._running = True
         self._image_surf = pygame.image.load("snake.png").convert()
@@ -194,23 +195,29 @@ class App:
 
         # does snake eat Frog?
         for i in range(0, self.player.length):
-            if self.game.checkCollision(self.Frog.x, self.Frog.y, self.player.x[i], self.player.y[i], 44):
+            if self.game.checkCollision(self.Frog.x, self.Frog.y,
+                                        self.player.x[i], self.player.y[i],
+                                        44):
                 self.Frog.x = randint(2, 9) * 44
                 self.Frog.y = randint(2, 9) * 44
                 self.player.length = self.player.length + 1
 
         # does computer eat Frog?
         for i in range(0, self.player.length):
-            if self.game.checkCollision(self.Frog.x, self.Frog.y, self.computer.x[i], self.computer.y[i], 44):
+            if self.game.checkCollision(self.Frog.x, self.Frog.y,
+                                        self.computer.x[i], self.computer.y[i],
+                                        44):
                 self.Frog.x = randint(2, 9) * 44
                 self.Frog.y = randint(2, 9) * 44
-                #to increase length
+                # to increase length
                 # self.computer.length = self.computer.length + 1
 
         # does snake collide with itself?
         for i in range(2, self.player.length):
-            if self.game.checkCollision(self.player.x[0], self.player.y[0], self.player.x[i], self.player.y[i], 40):
-                print( "You lose! ")
+            if self.game.checkCollision(self.player.x[0], self.player.y[0],
+                                        self.player.x[i], self.player.y[i],
+                                        40):
+                print("You lose! ")
                 exit(0)
 
         pass
@@ -226,7 +233,7 @@ class App:
         pygame.quit()
 
     def handler(self):
-        if self.loader() == False:
+        if self.loader() is False:
             self._running = False
 
         while (self._running):
@@ -251,7 +258,7 @@ class App:
             self.main()
             self.renderer()
 
-            time.sleep(50.0 / 1000.0);
+            time.sleep(50.0 / 1000.0)
         self.on_cleanup()
 
 
