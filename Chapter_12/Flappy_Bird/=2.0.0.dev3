@@ -1,0 +1,7 @@
+Collecting pygame
+  Using cached https://files.pythonhosted.org/packages/32/37/453bbb62f90feff2a2b75fc739b674319f5f6a8789d5d21c6d2d7d42face/pygame-1.9.6-cp37-cp37m-macosx_10_11_intel.whl
+Installing collected packages: pygame
+  Found existing installation: pygame 1.9.6
+    Uninstalling pygame-1.9.6:
+      Successfully uninstalled pygame-1.9.6
+Successfully installed pygame-1.9.6
