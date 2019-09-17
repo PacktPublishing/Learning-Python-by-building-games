@@ -25,8 +25,8 @@ class RoundBird():
 
 class RoundPig():
     def __init__(self, x_pos, y_pos, space):
-        self.life = 20
         # life will be decreased after collision of pig with bird
+        self.life = 20
         weight = 5
         r = 14  # r adius
         value_of_inertia = p.moment_for_circle(weight, 0, r, (0, 0))

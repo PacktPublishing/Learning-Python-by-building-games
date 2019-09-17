@@ -102,7 +102,7 @@ def distance(x0, y0, x1, y1):
 
 def load_music():
     """Load the music"""
-    song = './res/sounds/angry-total_birds.ogg'
+    song = './res/sounds/angry-birds.ogg'
     pygame.mixer.music.load(song)
     pygame.mixer.music.play(-1)
 
@@ -234,7 +234,7 @@ space_obj.add_collision_handler(0, 1).post_solve = post_solve_bird_pig
 space_obj.add_collision_handler(0, 2).post_solve = post_solve_bird_wood
 # pig and wood
 space_obj.add_collision_handler(1, 2).post_solve = post_solve_pig_wood
-# load_music()
+load_music()
 level = Level(total_pig, columns, beams, space_obj)
 level.number = 0
 level.load_level()
