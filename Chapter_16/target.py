@@ -12,3 +12,8 @@ def target(self, dx, dy):
 
             if gt(self.y[0] , dy):
                 self.moveUp()
+                
+
+def draw(self, surface, image):
+     for item in range(0, self.length):
+         surface.blit(image, (self.x[item], self.y[item]))       
