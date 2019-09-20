@@ -48,14 +48,14 @@ def Animation_Logic():
     pygame.display.update()
 
 
-run = True
+finish = False
 
-while run:
+while not finish:
     clock.tick(27)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            run = False
+            finish = True
 
     keys = pygame.key.get_pressed()
 
