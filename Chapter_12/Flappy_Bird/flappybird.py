@@ -7,10 +7,10 @@ import pygame
 from pygame.locals import *
 
 
-FPS = 60
+Frame_Rate = 60
 ANIMATION_SPEED = 0.18  # pixels per millisecond
-WIN_WIDTH = 284 * 2     # BG image size: 284x512 px; tiled twice
-WIN_HEIGHT = 512
+WINDOW_WIDTH = 284 * 2     # BG image size: 284x512 px; tiled twice
+WINDOW_HEIGHT = 512
 
 
 class Bird(pygame.sprite.Sprite):
@@ -39,7 +39,7 @@ class Bird(pygame.sprite.Sprite):
         execute a complete climb.
     """
 
-    WIDTH = HEIGHT = 50
+    WIDTH = HEIGHT = 30
     SINK_SPEED = 0.18
     CLIMB_SPEED = 0.3
     CLIMB_DURATION = 333.3
@@ -135,90 +135,90 @@ class PipePair(pygame.sprite.Sprite):
     mask: A bitmask which excludes all pixels in self.image with a
         transparency greater than 127.  This can be used for collision
         detection.
-    top_pieces: The number of pieces, including the end piece, in the
+    top_pipe_pieces: The number of pieces, including the end piece, in the
         top pipe.
-    bottom_pieces: The number of pieces, including the end piece, in
+    bottom_pipe_pieces: The number of pieces, including the end piece, in
         the bottom pipe.
 
     Constants:
     WIDTH: The width, in pixels, of a pipe piece.  Because a pipe is
         only one piece wide, this is also the width of a PipePair's
         image.
-    PIECE_HEIGHT: The height, in pixels, of a pipe piece.
+    HEIGHT_PIECE: The height, in pixels, of a pipe piece.
     ADD_INTERVAL: The interval, in milliseconds, in between adding new
         pipes.
     """
 
     WIDTH = 80
-    PIECE_HEIGHT = 32
+    HEIGHT_PIECE = 32
     ADD_INTERVAL = 3000
 
-    def __init__(self, pipe_end_img, pipe_body_img):
+    def __init__(self, end_image_pipe, body_image_pipe):
         """Initialises a new random PipePair.
 
         The new PipePair will automatically be assigned an x attribute of
-        float(WIN_WIDTH - 1).
+        float(WINDOW_WIDTH - 1).
 
         Arguments:
-        pipe_end_img: The image to use to represent a pipe's end piece.
-        pipe_body_img: The image to use to represent one horizontal slice
+        end_image_pipe: The image to use to represent a pipe's end piece.
+        body_image_pipe: The image to use to represent one horizontal slice
             of a pipe's body.
         """
-        self.x = float(WIN_WIDTH - 1)
+        self.x = float(WINDOW_WIDTH - 1)
         self.score_counted = False
 
-        self.image = pygame.Surface((PipePair.WIDTH, WIN_HEIGHT), SRCALPHA)
+        self.image = pygame.Surface((PipePair.WIDTH, WINDOW_HEIGHT), SRCALPHA)
         self.image.convert()   # speeds up blitting
         self.image.fill((0, 0, 0, 0))
         total_pipe_body_pieces = int(
-            (WIN_HEIGHT -                  # fill window from top to bottom
+            (WINDOW_HEIGHT -                  # fill window from top to bottom
              3 * Bird.HEIGHT -             # make room for bird to fit through
-             3 * PipePair.PIECE_HEIGHT) /  # 2 end pieces + 1 body piece
-            PipePair.PIECE_HEIGHT          # to get number of pipe pieces
+             3 * PipePair.HEIGHT_PIECE) /  # 2 end pieces + 1 body piece
+            PipePair.HEIGHT_PIECE          # to get number of pipe pieces
         )
-        self.bottom_pieces = randint(1, total_pipe_body_pieces)
-        self.top_pieces = total_pipe_body_pieces - self.bottom_pieces
+        self.bottom_pipe_pieces = randint(1, total_pipe_body_pieces)
+        self.top_pipe_pieces = total_pipe_body_pieces - self.bottom_pipe_pieces
 
         # bottom pipe
-        for i in range(1, self.bottom_pieces + 1):
-            piece_pos = (0, WIN_HEIGHT - i*PipePair.PIECE_HEIGHT)
-            self.image.blit(pipe_body_img, piece_pos)
-        bottom_pipe_end_y = WIN_HEIGHT - self.bottom_height_px
-        bottom_end_piece_pos = (0, bottom_pipe_end_y - PipePair.PIECE_HEIGHT)
-        self.image.blit(pipe_end_img, bottom_end_piece_pos)
+        for i in range(1, self.bottom_pipe_pieces + 1):
+            piece_pos = (0, WINDOW_HEIGHT - i*PipePair.HEIGHT_PIECE)
+            self.image.blit(body_image_pipe, piece_pos)
+        bottom_pipe_end_y = WINDOW_HEIGHT - self.height_bottomPipe_px
+        bottom_end_piece_pos = (0, bottom_pipe_end_y - PipePair.HEIGHT_PIECE)
+        self.image.blit(end_image_pipe, bottom_end_piece_pos)
 
         # top pipe
-        for i in range(self.top_pieces):
-            self.image.blit(pipe_body_img, (0, i * PipePair.PIECE_HEIGHT))
-        top_pipe_end_y = self.top_height_px
-        self.image.blit(pipe_end_img, (0, top_pipe_end_y))
+        for i in range(self.top_pipe_pieces):
+            self.image.blit(body_image_pipe, (0, i * PipePair.HEIGHT_PIECE))
+        top_pipe_end_y = self.height_topPipe_px
+        self.image.blit(end_image_pipe, (0, top_pipe_end_y))
 
         # compensate for added end pieces
-        self.top_pieces += 1
-        self.bottom_pieces += 1
+        self.top_pipe_pieces += 1
+        self.bottom_pipe_pieces += 1
 
         # for collision detection
         self.mask = pygame.mask.from_surface(self.image)
 
     @property
-    def top_height_px(self):
+    def height_topPipe_px(self):
         """Get the top pipe's height, in pixels."""
-        return self.top_pieces * PipePair.PIECE_HEIGHT
+        return self.top_pipe_pieces * PipePair.HEIGHT_PIECE
 
     @property
-    def bottom_height_px(self):
+    def height_bottomPipe_px(self):
         """Get the bottom pipe's height, in pixels."""
-        return self.bottom_pieces * PipePair.PIECE_HEIGHT
+        return self.bottom_pipe_pieces * PipePair.HEIGHT_PIECE
 
     @property
     def visible(self):
         """Get whether this PipePair on screen, visible to the player."""
-        return -PipePair.WIDTH < self.x < WIN_WIDTH
+        return -PipePair.WIDTH < self.x < WINDOW_WIDTH
 
     @property
     def rect(self):
         """Get the Rect which contains this PipePair."""
-        return Rect(self.x, 0, PipePair.WIDTH, PipePair.PIECE_HEIGHT)
+        return Rect(self.x, 0, PipePair.WIDTH, PipePair.HEIGHT_PIECE)
 
     def update(self, delta_frames=1):
         """Update the PipePair's position.
@@ -239,22 +239,22 @@ class PipePair(pygame.sprite.Sprite):
         return pygame.sprite.collide_mask(self, bird)
 
 
-def load_images():
+def loading_Images():
     """Load all images required by the game and return a dict of them.
 
     The returned dict has the following keys:
-    background: The game's background image.
-    bird-wingup: An image of the bird with its wing pointing upward.
-        Use this and bird-wingdown to create a flapping bird.
-    bird-wingdown: An image of the bird with its wing pointing downward.
-        Use this and bird-wingup to create a flapping bird.
-    pipe-end: An image of a pipe's end piece (the slightly wider bit).
-        Use this and pipe-body to make pipes.
-    pipe-body: An image of a slice of a pipe's body.  Use this and
-        pipe-body to make pipes.
+    game_background: The game's game_background image.
+    WingUp: An image of the bird with its wing pointing upward.
+        Use this and WingDown to create a flapping bird.
+    WingDown: An image of the bird with its wing pointing downward.
+        Use this and WingUp to create a flapping bird.
+    endPipe: An image of a pipe's end piece (the slightly wider bit).
+        Use this and bodyPipe to make pipes.
+    bodyPipe: An image of a slice of a pipe's body.  Use this and
+        bodyPipe to make pipes.
     """
 
-    def load_image(img_file_name):
+    def loading_Image(img_file_name):
         """Return the loaded pygame image with the specified file name.
 
         This function looks for images in the game's images folder
@@ -270,33 +270,32 @@ def load_images():
         img.convert()
         return img
 
-    return {'background': load_image('background.png'),
-            'pipe-end': load_image('pipe_end.png'),
-            'pipe-body': load_image('pipe_body.png'),
-            # images for animating the flapping bird -- animated GIFs are
-            # not supported in pygame
-            'bird-wingup': load_image('bird_wing_up.png'),
-            'bird-wingdown': load_image('bird_wing_down.png')}
+    return {'game_background': loading_Image('background.png'),
+            'endPipe': loading_Image('pipe_end.png'),
+            'bodyPipe': loading_Image('pipe_body.png'),
+            # GIF file format is nor supported by pygame
+            'WingUp': loading_Image('bird_wing_up.png'),
+            'WingDown': loading_Image('bird_wing_down.png')}
 
 
-def frames_to_msec(frames, fps=FPS):
+def frames_to_msec(frames, Frame_Rate=Frame_Rate):
     """Convert frames to milliseconds at the specified framerate.
 
     Arguments:
     frames: How many frames to convert to milliseconds.
-    fps: The framerate to use for conversion.  Default: FPS.
+    Frame_Rate: The framerate to use for conversion.  Default: Frame_Rate.
     """
-    return 1000.0 * frames / fps
+    return 1000.0 * frames / Frame_Rate
 
 
-def msec_to_frames(milliseconds, fps=FPS):
+def msec_to_frames(milliseconds, Frame_Rate=Frame_Rate):
     """Convert milliseconds to frames at the specified framerate.
 
     Arguments:
     milliseconds: How many milliseconds to convert to frames.
-    fps: The framerate to use for conversion.  Default: FPS.
+    Frame_Rate: The framerate to use for conversion.  Default: Frame_Rate.
     """
-    return fps * milliseconds / 1000.0
+    return Frame_Rate * milliseconds / 1000.0
 
 
 def main():
@@ -308,17 +307,17 @@ def main():
 
     pygame.init()
 
-    display_surface = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
+    display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     pygame.display.set_caption('Pygame Flappy Bird')
 
     clock = pygame.time.Clock()
     score_font = pygame.font.SysFont(None, 32, bold=True)  # default font
-    images = load_images()
+    images = loading_Images()
 
     # the bird stays in the same x position, so bird.x is a constant
     # center bird on screen
-    bird = Bird(50, int(WIN_HEIGHT/2 - Bird.HEIGHT/2), 2,
-                (images['bird-wingup'], images['bird-wingdown']))
+    bird = Bird(50, int(WINDOW_HEIGHT/2 - Bird.HEIGHT/2), 2,
+                (images['WingUp'], images['WingDown']))
 
     pipes = deque()
 
@@ -326,12 +325,12 @@ def main():
     score = 0
     done = paused = False
     while not done:
-        clock.tick(FPS)
+        clock.tick(Frame_Rate)
 
         # Handle this 'manually'.  If we used pygame.time.set_timer(),
         # pipe addition would be messed up when paused.
         if not (paused or frame_clock % msec_to_frames(PipePair.ADD_INTERVAL)):
-            pp = PipePair(images['pipe-end'], images['pipe-body'])
+            pp = PipePair(images['endPipe'], images['bodyPipe'])
             pipes.append(pp)
 
         for e in pygame.event.get():
@@ -348,12 +347,10 @@ def main():
             continue  # don't draw anything
 
         # check for collisions
-        pipe_collision = any(p.collides_with(bird) for p in pipes)
-        if pipe_collision or 0 >= bird.y or bird.y >= WIN_HEIGHT - Bird.HEIGHT:
-            done = True
 
-        for x in (0, WIN_WIDTH / 2):
-            display_surface.blit(images['background'], (x, 0))
+
+        for x in (0, WINDOW_WIDTH / 2):
+            display_surface.blit(images['game_background'], (x, 0))
 
         while pipes and not pipes[0].visible:
             pipes.popleft()
@@ -371,9 +368,6 @@ def main():
                 score += 1
                 p.score_counted = True
 
-        score_surface = score_font.render(str(score), True, (255, 255, 255))
-        score_x = WIN_WIDTH/2 - score_surface.get_width()/2
-        display_surface.blit(score_surface, (score_x, PipePair.PIECE_HEIGHT))
 
         pygame.display.flip()
         frame_clock += 1
