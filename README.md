@@ -68,22 +68,16 @@ Click on the following link to see the Code in Action:
 
 [http://bit.ly/2oE9mHV](http://bit.ly/2oE9mHV)
 
-### Related products <Other books you may enjoy>
-* Linux: Powerful Server Administration [[Packt]](https://www.packtpub.com/networking-and-servers/linux-powerful-server-administration?utm_source=github&utm_medium=repository&utm_campaign=9781788293778) [[Amazon]](https://www.amazon.com/dp/1788293770)
+### Related products
+* Hands-On Deep Learning for Games [[Packt]](https://www.packtpub.com/game-development/hands-deep-learning-games?utm_source=github&utm_medium=repository&utm_campaign=9781788994071) [[Amazon]](https://www.amazon.com/dp/1788994078)
 
-* Linux Device Drivers Development [[Packt]](https://www.packtpub.com/networking-and-servers/linux-device-drivers-development?utm_source=github&utm_medium=repository&utm_campaign=9781785280009) [[Amazon]](https://www.amazon.com/dp/1788293770)
+* Expert Python Programming - Third Edition [[Packt]](https://www.packtpub.com/application-development/expert-python-programming-third-edition?utm_source=github&utm_medium=repository&utm_campaign=9781789808896) [[Amazon]](https://www.amazon.com/dp/1789808898)
 
-## Get to Know the Author(s)
-**Author Name**
-Bio
-
-**Author Name**
-Bio
+## Get to Know the Author
+**Sachin Kafle**
+is a computer engineer from Tribhuvan University, Nepal, and a programming instructor currently living in Kathmandu. He is the founder of Bitfourstack Technologies, a software company that provides services including automation for real-time problems in businesses. One of his courses, named Python Game Development, is the best seller on many e-learning websites. His interests lie in software development and integration practices in the areas of computation and quantitative fields of trade. He has been utilizing his expertise in Python, C, Java, and C# by teaching since 2012. He has been a source of motivation to younger people, and even his peers, regardless of their educational background, who are embarking on their journey in programming.
 
 
-## Other books by the authors
-* [Mastering Linux Network Administration](https://www.packtpub.com/networking-and-servers/mastering-linux-network-administration?utm_source=github&utm_medium=repository&utm_campaign=9781784399597)
-* [Linux Mint Essentials](https://www.packtpub.com/networking-and-servers/linux-mint-essentials?utm_source=github&utm_medium=repository&utm_campaign=9781782168157)
 
 ### Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSdy7dATC6QmEL81FIUuymZ0Wy9vH1jHkvpY57OiMeKGqib_Ow/viewform) if you have any feedback or suggestions.
