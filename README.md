@@ -50,12 +50,12 @@ With the following software and hardware list you can run all code files present
 | 2        | Python version 3.5+                               | Windows, Mac OS X, and Linux (Any) |
 | 3 to 4   | Python IDLE (comes preinstalled with python)      | Windows, Mac OS X, and Linux (Any) |   
 | 5        | Open Source Curses Library[version 2.0+]          | Windows, Mac OS X, and Linux (Any) |
-| 6-7      | Python IDLE (comes preinstalled with python)      | Windows, Mac OS X, and Linux (Any) |
+| 6 to 7      | Python IDLE (comes preinstalled with python)      | Windows, Mac OS X, and Linux (Any) |
 | 8        | Python IDLE (comes preinstalled with python)/     | Windows, Mac OS X, and Linux (Any) |                                   
 |          |  turtle library (comes prebuilt)                  |                                    |
-| 9-10     | Python IDLE (comes preinstalled with python)      | Windows, Mac OS X, and Linux (Any) |
+| 9 to 10     | Python IDLE (comes preinstalled with python)      | Windows, Mac OS X, and Linux (Any) |
 | 11       | Pycharm IDE Community Version 2018-2019.2+        | Windows, Mac OS X, and Linux (Any) |
-| 11-13    | Pygame Library version 1.9.6[Python version 3.5+] | Windows, Mac OS X, and Linux (Any) |
+| 11 to 13    | Pygame Library version 1.9.6[Python version 3.5+] | Windows, Mac OS X, and Linux (Any) |
 | 14       | PyopenGL library version 3.1.0                    | Windows, Mac OS X, and Linux (Any) |
 | 15       | Pycharm IDE Community Version 2018-2019.2+        | Windows, Mac OS X, and Linux (Any) |
 | 15       | Pymunk Library version 5.5.0                      | Windows, Mac OS X, and Linux (Any) |
